@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appel à l'aide - Capitaine Flam</title>
+    <style>
+        body { 
+            background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)), 
+                        url('lave.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: #ff4802; 
+            font-family: 'Courier New', Courier, monospace; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            justify-content: center; 
+            min-height: 100vh; 
+            margin: 0; 
+            padding: 20px;
+            box-sizing: border-box;
+            /* Empêche la sélection du texte */
+            user-select: none; 
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+        }
+
+        h1 {
+            color: #ffaa00;
+            text-shadow: 0 0 15px #ff4802;
+            text-align: center;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 1.5rem;
+        }
+
+        /* Écran de démarrage initial */
+        #init-screen {
+            text-align: center;
+            z-index: 50;
+        }
+
+        .lore-box {
+            background: rgba(10, 0, 0, 0.9);
+            padding: 40px;
+            border: 2px solid #ff4802;
+            box-shadow: 0 0 25px rgba(255, 72, 2, 0.4);
+            border-radius: 8px;
+            max-width: 800px;
+            width: 100%;
+            line-height: 1.6;
+            font-size: 1.1rem;
+            display: none; /* Caché au départ */
+        }
+
+        .highlight {
+            color: #ffcc66;
+            font-weight: bold;
+            text-shadow: 0 0 5px rgba(255, 204, 102, 0.5);
+        }
+
+        .cursor {
+            display: inline-block;
+            width: 10px;
+            height: 1.2rem;
+            background-color: #ff4802;
+            animation: blink 1s step-end infinite;
+            vertical-align: text-bottom;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        .action-btn { 
+            background: transparent; 
+            color: #ffaa00; 
+            border: 2px solid #ffaa00; 
+            padding: 15px 30px; 
+            font-family: inherit; 
+            font-weight: bold; 
+            cursor: pointer; 
+            margin-top: 40px; 
+            font-size: 1.1rem; 
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+        }
+
+        #start-btn {
+            display: none; /* Caché jusqu'à la fin du texte */
+        }
+
+        .action-btn:hover { 
+            background: #ffaa00; 
+            color: #000;
+            box-shadow: 0 0 20px #ffaa00; 
+        }
+        
+        #text-container {
+            min-height: 300px;
+        }
+    </style>
+</head>
+<body>
+
+    <audio id="bg-audio" loop>
+        <source src="intro.mp3" type="audio/mp3">
+    </audio>
+
+    <div id="init-screen">
+        <button class="action-btn" onclick="demarrerExperience()">Démarrer le fil rouge secret</button>
+    </div>
+
+    <div class="lore-box" id="lore-section">
+        <h1>> ALERTE : INTRUSION SYSTÈME DÉTECTÉE</h1>
+        <div id="text-container"></div><span class="cursor"></span>
+        
+        <div style="text-align: center;">
+            <button class="action-btn" id="start-btn" onclick="lancerAventure()">Rejoindre Flam dans la Caldeira</button>
+        </div>
+    </div>
+
+    <script>
+        /* --- SYSTÈME ANTI-TRICHE --- */
+        // Bloquer le clic droit
+        document.addEventListener('contextmenu', event => event.preventDefault());
+
+        // Bloquer les raccourcis clavier (Windows et Mac)
+        document.addEventListener('keydown', function(e) {
+            if (
+                e.key === 'F12' || 
+                (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'i' || e.key === 'C' || e.key === 'c' || e.key === 'J' || e.key === 'j')) ||
+                (e.metaKey && e.altKey && (e.key === 'I' || e.key === 'i' || e.key === 'J' || e.key === 'j')) || // Mac Inspect
+                (e.ctrlKey && (e.key === 'U' || e.key === 'u' || e.key === 'S' || e.key === 's' || e.key === 'P' || e.key === 'p' || e.key === 'C' || e.key === 'c' || e.key === 'X' || e.key === 'x')) ||
+                (e.metaKey && (e.key === 'U' || e.key === 'u' || e.key === 'S' || e.key === 's' || e.key === 'P' || e.key === 'p' || e.key === 'C' || e.key === 'c' || e.key === 'X' || e.key === 'x')) // Mac equivalents
+            ) {
+                e.preventDefault();
+            }
+        });
+
+        /* --- LOGIQUE DE L'HISTOIRE --- */
+        const texteHistoire = `> CONNEXION ÉTABLIE...<br>> EMETTEUR : <span class="highlight">CAPITAINE FLAM</span><br><br>S'il vous plaît... Est-ce que quelqu'un m'entend ? <br><br>Je n'avais pas d'autre choix que de pirater vos écrans. <span class="highlight">Maggy</span>, mon amie de toujours... l'Étincelle de cette école... elle s'éteint. Une faction de l'Ordre du Zéro Absolu (OZA) veut imposer un hiver éternel ici, et ils ont failli l'avoir.<br><br>Dans la panique, je l'ai emportée au plus profond de la <span class="highlight">Caldeira</span> pour la garder au chaud, mais elle est trop faible. Je ne peux pas la soigner seul. J'ai entendu dire que votre vivacité d'esprit n'avait d'égale que votre courage.<br><br>Aidez-moi à descendre dans les tréfonds du volcan. Pour déjouer les pièges de nos ennemis, je devrai puiser dans mes souvenirs avec elle... mais c'est vous qui devrez trouver les clés.<br><br><span class="highlight">Voulez-vous m'aider à sauver Maggy ?</span>`;
+
+        const container = document.getElementById("text-container");
+        const boutonStart = document.getElementById("start-btn");
+        const initScreen = document.getElementById("init-screen");
+        const loreSection = document.getElementById("lore-section");
+        const bgAudio = document.getElementById("bg-audio");
+        
+        let i = 0;
+        let isTag = false;
+
+        // Déclenchée par le premier bouton
+        function demarrerExperience() {
+            initScreen.style.display = "none";
+            loreSection.style.display = "block";
+            
+            // Lancer l'audio
+            bgAudio.volume = 0.5;
+            bgAudio.play().catch(e => console.log("L'audio a été bloqué par le navigateur."));
+
+            // Démarrer l'écriture après un petit délai
+            setTimeout(typeWriter, 800);
+        }
+
+        function typeWriter() {
+            if (i < texteHistoire.length) {
+                // Gestion des balises HTML pour ne pas les écrire lettre par lettre
+                if (texteHistoire.charAt(i) === '<') isTag = true;
+                
+                container.innerHTML = texteHistoire.slice(0, i + 1);
+                
+                // Retour haptique (vibration légère de 10ms) - Fonctionne sur mobile uniquement
+                if (!isTag && navigator.vibrate) {
+                    navigator.vibrate(10);
+                }
+
+                if (texteHistoire.charAt(i) === '>') isTag = false;
+
+                i++;
+
+                if (isTag) {
+                    // Si on est dans une balise HTML, on avance instantanément
+                    typeWriter();
+                } else {
+                    // Calcul de la vitesse humaine
+                    let speed = Math.floor(Math.random() * 20) + 15; // Vitesse de frappe de base (15 à 35ms)
+                    
+                    // Pauses plus longues sur la ponctuation
+                    const char = texteHistoire.charAt(i - 1);
+                    if (char === '.' || char === '?' || char === '!') {
+                        speed += 300; // Grosse pause
+                    } else if (char === ',' || char === ':') {
+                        speed += 150; // Petite pause
+                    }
+
+                    setTimeout(typeWriter, speed);
+                }
+            } else {
+                // Fin de l'écriture
+                setTimeout(() => {
+                    boutonStart.style.display = "inline-block";
+                }, 800);
+            }
+        }
+
+        function lancerAventure() {
+            document.body.style.transition = "opacity 0.8s ease";
+            document.body.style.opacity = 0;
+            setTimeout(() => {
+                // Redirection vers Enigme1.html selon tes instructions
+                window.location.href = "Enigme1.html";
+            }, 800);
+        }
+    </script>
+</body>
+</html>
