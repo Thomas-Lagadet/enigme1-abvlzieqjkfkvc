@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Étape validée</title>
+<style>
+body{background:linear-gradient(rgba(0,0,0,.8),rgba(0,0,0,.8)),url('lave.png');background-size:cover;background-position:center;background-attachment:fixed;color:#ffcc66;font-family:'Courier New',Courier,monospace;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;margin:0;padding:20px;box-sizing:border-box;overflow:hidden;user-select:none}
+.x1{position:fixed;top:0;left:0;width:100%;height:100%;background:linear-gradient(to bottom,rgba(255,255,255,0),rgba(255,255,255,0) 50%,rgba(0,0,0,.2) 50%,rgba(0,0,0,.2));background-size:100% 4px;pointer-events:none;z-index:10}
+.x2{background:rgba(10,0,0,.9);padding:40px;border:2px solid #ffaa00;box-shadow:0 0 50px rgba(255,170,0,.4);text-align:center;border-radius:8px;max-width:600px;width:100%;position:relative;animation:p1 .8s cubic-bezier(.175,.885,.32,1.275);z-index:20}
+@keyframes p1{0%{transform:scale(.5);opacity:0}100%{transform:scale(1);opacity:1}}
+h1{font-size:2.5rem;color:#ffaa00;text-shadow:0 0 20px #ff4802;margin:0 0 20px 0;text-transform:uppercase;border-bottom:2px dashed #ffaa00;padding-bottom:20px;letter-spacing:2px}
+.x3{font-size:1.5rem;color:#0f0;font-weight:bold;margin-bottom:30px;text-shadow:0 0 10px #0a0;animation:b1 1.5s infinite;letter-spacing:1px}
+@keyframes b1{0%,100%{opacity:1}50%{opacity:.5}}
+p{font-size:1.1rem;line-height:1.6;margin-bottom:20px;color:#fff}
+.x4{background:rgba(255,72,2,.1);padding:20px;border-left:5px solid #ff4802;text-align:left;margin-top:30px;border-radius:0 8px 8px 0}
+.x5{color:#fa0;font-weight:bold;font-size:1.2rem;text-shadow:0 0 5px rgba(255,170,0,.5)}
+</style>
+</head>
+<body>
+<div class="x1"></div>
+<div class="x2">
+<h1>ACCÈS NOYAU</h1>
+<div class="x3">✓ IDENTIFICATION CONFIRMÉE</div>
+<p>Bien joué. Vous avez terminé la première partie de l'histoire.</p>
+<div class="x4">
+<p style="margin-top:0;"><strong>> PROCHAINE DIRECTIVE :</strong></p>
+<p>Pour obtenir  la suite de la mission, envoyez immédiatement un message privé au QG sur WhatsApp.</p>
+<p class="x5">⚠️ IMPORTANT : Indiquez le mot de passe que vous venez de trouver, et la façon dont vous l'avez trouvé dans votre message pour prouver votre réussite.</p>
+</div>
+</div>
+</body>
+</html>

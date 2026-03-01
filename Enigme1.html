@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Énigme 1</title>
+<style>
+body{background:linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,.6)),url('lave.png');background-size:cover;background-position:center;background-attachment:fixed;color:#ff4802;font-family:'Courier New',Courier,monospace;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;min-height:100vh;margin:0;padding:20px 0;box-sizing:border-box;position:relative;transition:background .5s ease;user-select:none}
+.q1{background:rgba(10,0,0,.9);padding:30px;border:2px solid #ff4802;box-shadow:0 0 25px rgba(255,72,2,.4);border-radius:8px;max-width:800px;width:90%;line-height:1.6;font-size:1.1rem;margin-bottom:30px;z-index:10;min-height:100px;text-align:justify;transition:all .5s ease}
+body.z1 .q1{border-color:#0f0;box-shadow:0 0 30px #0a0;color:#0f0;background:rgba(0,20,0,.9)}
+body.z2 .q1{border-color:#f00;box-shadow:0 0 20px #a00;color:#f00;background:rgba(30,0,0,.95)}
+.q2{display:inline-block;width:10px;height:1.2rem;background-color:#ff4802;animation:bk 1s step-end infinite;vertical-align:text-bottom;transition:all .5s ease}
+body.z1 .q2{background-color:#0f0}
+body.z2 .q2{background-color:#f00}
+@keyframes bk{0%,100%{opacity:1}50%{opacity:0}}
+.q3{display:none;opacity:0;flex-direction:row;align-items:center;justify-content:center;gap:50px;width:100%;max-width:1400px;padding:20px;flex-wrap:wrap;z-index:10;transition:opacity 1s ease}
+body.z1{background:linear-gradient(rgba(0,50,0,.6),rgba(0,50,0,.6)),url('lave.png');background-size:cover;background-position:center;background-attachment:fixed}
+body.z2{background:linear-gradient(rgba(80,0,0,.9),rgba(80,0,0,.9)),url('lave.png');background-size:cover;background-position:center;background-attachment:fixed}
+
+/* Correction des titres h1 et h2 pour respecter tes critères sans casser le design */
+h2{color:#fa0;text-shadow:0 0 10px #ff4802;text-align:center;margin-bottom:30px;text-transform:uppercase;transition:all .5s ease;letter-spacing:2px;font-size:1.5rem}
+body.z1 h2{color:#0f0;text-shadow:0 0 20px #0a0}
+body.z2 h2{color:#f00;text-shadow:0 0 10px #a00}
+h1{font-size:2rem;color:#fa0;text-shadow:0 0 15px #ff4802;margin-top:20px;margin-bottom:20px;font-weight:bold;text-align:center;z-index:10;width:100%;text-transform:uppercase;letter-spacing:3px}
+body.z1 h1{color:#0f0;text-shadow:0 0 20px #0a0}
+body.z2 h1{color:#f00;text-shadow:0 0 15px #a00}
+
+.q5{max-width:450px;width:100%;height:auto;border:2px solid #ff4802;box-shadow:0 0 20px rgba(255,72,2,.6);border-radius:8px;transition:all .5s ease;display:block}
+body.z1 .q5{border-color:#0f0;box-shadow:0 0 30px #0a0}
+body.z2 .q5{border-color:#f00;box-shadow:0 0 20px #a00}
+.q6{background:rgba(10,0,0,.9);padding:40px;border:2px solid #fa0;box-shadow:0 0 20px rgba(255,170,0,.3);text-align:center;border-radius:8px;transition:all .5s ease;max-width:500px;width:100%;flex:1 1 300px;backdrop-filter:blur(5px)}
+body.z1 .q6{background:rgba(0,20,0,.9);border-color:#0f0;box-shadow:0 0 30px #0a0;color:#0f0}
+body.z2 .q6{background:rgba(30,0,0,.95);border-color:#f00;box-shadow:0 0 20px #a00}
+body.z1 .q6 p{color:#0f0}
+body.z2 .q6 p{color:#f00}
+.q7{background:transparent;border:1px solid #ff4802;color:#fa0;padding:10px;font-family:inherit;font-size:1.2rem;outline:none;width:80%;text-align:center;margin-top:10px;transition:all .5s ease;letter-spacing:2px;font-weight:bold}
+.q7:focus{border-color:#fa0;box-shadow:0 0 10px rgba(255,170,0,.5)}
+body.z1 .q7{background:rgba(0,50,0,.3);border-color:#0f0;color:#0f0}
+body.z2 .q7{background:rgba(50,0,0,.8);border-color:#f00;color:#f00}
+.q8{background:transparent;color:#fa0;border:2px solid #fa0;padding:10px 20px;font-family:inherit;font-weight:bold;cursor:pointer;margin-top:20px;font-size:1.1rem;transition:all .3s;text-transform:uppercase;line-height:1.5}
+.q8:hover{background:#fa0;color:#000;box-shadow:0 0 20px #fa0}
+body.z1 .q8{border-color:#0f0;color:#0f0}
+body.z1 .q8:hover{background:#0f0;color:#000;box-shadow:0 0 20px #0f0}
+body.z2 .q8{border-color:#f00;color:#f00}
+body.z2 .q8:hover{background:#f00;color:#000;box-shadow:0 0 20px #f00}
+#q9{margin-top:20px;min-height:20px;font-weight:bold;transition:all .5s ease;text-shadow:1px 1px 2px #000;font-size:.9rem}
+.qa{position:absolute;background:transparent;color:#ff4802;border:2px solid #ff4802;border-radius:8px;box-shadow:0 0 15px rgba(255,72,2,.5);transition:all .3s ease;z-index:1000;margin-top:0;font-family:inherit;font-weight:bold;padding:10px 20px;font-size:1.2rem;cursor:pointer;display:none}
+.qa:hover{background:#ff4802;color:#000;box-shadow:0 0 25px rgba(255,72,2,.7);transform:scale(1.05)}
+@media (max-width:900px){.q3{gap:30px}.q5{max-width:80%}}
+</style>
+</head>
+<body>
+<audio id="s1" src="reussite.mp3" preload="auto"></audio>
+<audio id="s2" src="erreur.mp3" preload="auto"></audio>
+<audio id="s3" src="boing.mp3" preload="auto"></audio>
+<audio id="s5" src="Bruit porte.wav" preload="auto"></audio>
+<audio id="s4" loop><source src="audioFond.mp3" type="audio/mpeg"></audio>
+
+<button class="qa" id="b1" onclick="xx3()">💡 INDICE</button>
+
+<h1>Énigme 1</h1>
+
+<div class="q1"><span id="t1"></span><span class="q2"></span></div>
+<div class="q3" id="m1">
+<img src="porteenfer.png" alt="" class="q5">
+<div class="q6">
+<h2>TERMINAL_01</h2>
+<p>> Veuillez entrer la signature de contournement magmatique.</p>
+<input type="text" class="q7" id="i1" placeholder="..." autocomplete="off">
+<br><button class="q8" id="c1" onclick="xx5()">FORCER L'ACCÈS</button>
+<div id="q9"></div>
+</div>
+</div>
+
+<script>
+const x0="Le temps presse. Capitaine Flam a dû prendre les devants et a déjà commencé à s'enfoncer dans les galeries de la Caldeira pour préparer le terrain. Avant de partir, il a verrouillé l'accès derrière lui par mesure de sécurité : il sait que l'Ordre ne possède pas votre œil d'expert et que vous seul saurez trouver le mot de passe. À vous de prouver qu'il a eu raison de vous faire confiance pour cette première étape.";
+let x1=0;
+const x2="e30660c4e6b8795a5b1fd48abc0e095136051a6634fb6bdc20a903d9c2d6162f";
+const x3=["https://www.youtube.com/watch?v=dQw4w9WgXcQ","https://youtu.be/9J62hGda9BQ?si=T84GepBIjyJSY7FO","https://youtu.be/s5-nUCSXKac?si=7uIPiDXkUvr2XTU4","https://www.youtube.com/watch?v=kxopViU98Xo","https://www.youtube.com/watch?v=oavMtUWDBTM","https://youtu.be/TkRbiBp7Tt8?si=eXAgU7xlMyf6izq1","https://youtu.be/EwTZ2xpQwpA?si=tXPQ-k3DBjQxEhfO","https://youtu.be/ZZ5LpwO-An4?si=1cj3nvmjNEt09IUz","https://youtu.be/6n3pFFPSlW4?si=ciWdbEeDvHJRBC1w","https://youtu.be/j9V78UbdzWI?si=wXC92qbq5MJJ7tGk","https://youtu.be/X2WH8mHJnhM?si=OMSERqtnzVtGqF2g","https://youtu.be/CdEpmU9pRaE?si=rC464Z0dGVdl37Hg","https://youtu.be/zIcFC8jBk1k?si=aBpmNBZkJspX5QRb","https://youtu.be/0C-Gw-F7zkA?si=5r2LMCUWbMyAhdEf","https://youtu.be/wI8uG4FEU98?si=DYV8Ly6o2y2r9VkS","https://youtu.be/5CB6-jeOc5Y?si=L-dNrvqIEsgawMpS","https://youtu.be/k71IoNg-Tk4?si=jpKPrdSmWfd0H1D2","https://youtu.be/XV2iPrM28rE?si=jrTiXqjQwj4PwcSI","https://youtu.be/9M2Ce50Hle8?si=0XEP32mGltX5GLen","https://youtu.be/Rxs4tg9AfH8?si=eKlcVnvrQ197YWwJ","https://youtu.be/IB3d1UthDrk?si=35KvfAP91s65055V","https://youtu.be/vXYVfk7agqU?si=ljHO76ZekWxP5sGE","https://youtu.be/kj4LxVhx2-A?si=3c1kAG0_W1VrRDwa","https://youtu.be/TAeNlpUIlRs?si=PvzJk62OOKZyA07O","https://youtu.be/yhb6OkT7NeY?si=0qRHah-3mit1hiW4","https://youtu.be/0OWjDCs3ALE?si=0mOCaNYCnMubJCKy","https://youtu.be/PA3P1-aSvKQ?si=UlWeFjCo4P1CpIh_"];
+let x4=0;
+
+document.addEventListener('click',()=>{let y=document.getElementById('s4');if(y.paused){y.play().catch(e=>0);y.volume=0.3;}},{once:true});
+window.addEventListener('load',()=>{setTimeout(xx1,800);});
+window.addEventListener('resize',xx2);
+
+// Modification du script Machine à écrire pour le rythme humain
+function xx1(){
+    if(x1<x0.length){
+        let char = x0.charAt(x1);
+        document.getElementById('t1').innerHTML+=char;
+        if(navigator.vibrate)navigator.vibrate(15);
+        x1++;
+        
+        let speed = Math.floor(Math.random() * 20) + 15;
+        if (char === '.' || char === '?' || char === '!') {
+            speed += 300;
+        } else if (char === ',' || char === ':') {
+            speed += 150;
+        }
+        
+        setTimeout(xx1, speed);
+    }else{
+        let m=document.getElementById('m1');
+        m.style.display='flex';
+        setTimeout(()=>{m.style.opacity=1;},50);
+        setTimeout(()=>{document.getElementById('b1').style.display='inline-block';xx2();},500);
+    }
+}
+
+function xx2(){let b=document.getElementById('b1'),t=document.getElementById('c1');if(!t||b.style.display==='none')return;let r=t.getBoundingClientRect(),l=r.right+window.scrollX+20,o=(r.top+window.scrollY)+(r.height/2)-(b.offsetHeight/2);if(window.innerWidth<900){l=(r.left+window.scrollX)+(r.width/2)-(b.offsetWidth/2);o=r.bottom+window.scrollY+20;}b.style.left=l+'px';b.style.top=o+'px';}
+function xx3(){let b=document.getElementById('b1'),s=document.getElementById('s3');window.removeEventListener('resize',xx2);s.cloneNode().play().catch(e=>0);x4++;if(x4%10===0)window.open(x3[Math.floor(Math.random()*x3.length)],'_blank');let w=document.documentElement.scrollWidth-b.offsetWidth-20,h=document.documentElement.scrollHeight-b.offsetHeight-20;b.style.left=Math.max(0,Math.floor(Math.random()*w))+'px';b.style.top=Math.max(0,Math.floor(Math.random()*h))+'px';}
+async function xx4(m){let e=new TextEncoder().encode(m),h=await crypto.subtle.digest('SHA-256',e);return Array.from(new Uint8Array(h)).map(v=>v.toString(16).padStart(2,'0')).join('');}
+async function xx5(){let i=document.getElementById('i1'),m=document.getElementById('q9'),z1=document.getElementById('s1'),z2=document.getElementById('s2'),z3=document.getElementById('s5');let t=i.value.toUpperCase().trim();if(t===""){m.style.color="#ff4802";m.innerText="> Erreur : Aucun flux détecté.";return;}let h=await xx4(t);if(h===x2){document.body.classList.add('z1');document.body.classList.remove('z2');z1.play();z3.play();m.style.color="#0f0";m.innerText="> ACCÈS AUTORISÉ.";setTimeout(()=>{window.location.href="succes.html";},2000);}else{document.body.classList.add('z2');document.body.classList.remove('z1');z2.currentTime=0;z2.play().catch(e=>0);m.style.color="#f00";m.innerText="> ERREUR : SIGNATURE REJETÉE.";let b=document.querySelector('.q6');b.style.transform="translateX(5px)";setTimeout(()=>b.style.transform="translateX(-5px)",50);setTimeout(()=>b.style.transform="translateX(5px)",100);setTimeout(()=>b.style.transform="translateX(0)",150);setTimeout(()=>{document.body.classList.remove('z2');},2000);}}
+document.getElementById("i1").addEventListener("keypress",e=>{if(e.key==="Enter")xx5();});
+
+// --- Bouclier Anti-Copie Exhaustif ---
+document.addEventListener('contextmenu', e => e.preventDefault());
+document.addEventListener('keydown', function(e) {
+    if (
+        e.key === 'F12' || 
+        (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'i' || e.key === 'C' || e.key === 'c' || e.key === 'J' || e.key === 'j')) ||
+        (e.metaKey && e.altKey && (e.key === 'I' || e.key === 'i' || e.key === 'J' || e.key === 'j')) || 
+        (e.ctrlKey && (e.key === 'U' || e.key === 'u' || e.key === 'S' || e.key === 's' || e.key === 'P' || e.key === 'p' || e.key === 'C' || e.key === 'c' || e.key === 'X' || e.key === 'x')) ||
+        (e.metaKey && (e.key === 'U' || e.key === 'u' || e.key === 'S' || e.key === 's' || e.key === 'P' || e.key === 'p' || e.key === 'C' || e.key === 'c' || e.key === 'X' || e.key === 'x'))
+    ) {
+        e.preventDefault();
+    }
+});
+</script>
+</body>
+</html>
